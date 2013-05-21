@@ -1,0 +1,2 @@
+C:\Users\ci90022\Documents\GitHub\WordLadderSolver\WordLadderSolver\WordLadderSolver\bin\Release\WordLadderSolver.exe.config
+C:\Users\ci90022\Documents\GitHub\WordLadderSolver\WordLadderSolver\WordLadderSolver\obj\Release\WordLadderSolver.csprojResolveAssemblyReference.cache
