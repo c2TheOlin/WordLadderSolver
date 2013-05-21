@@ -24,22 +24,15 @@ namespace WordLadderSolver
         public static void Main(string[] args)
         {
             var file = "\\Data\\dictionary.txt";
-            string path = string.Concat(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), file);
-
             var rootWord = "bill";
-            List<string> wordLadder = new List<string>();
-            Dictionary<string, int> letterCount = new Dictionary<string, int>();
 
-            // Start The Proceedrue
-            DictionaryWordLoader loader = new DictionaryWordLoader(path);
+            // Load Dictionary
+            DictionaryWordLoader loader = new DictionaryWordLoader(string.Concat(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), file));
             string[] wordlist = loader.ReadFile();
 
-            var result = ContainsWord(rootWord, ref wordlist);
-        }
-
-        private static bool ContainsWord(string word, ref string[] wordlist)
-        {
-           return wordlist.AsParallel().Contains(word);
-        }
+            // Kick of Recursive Algorithm
+            LadderRecurser ladders = new LadderRecurser(rootWord, wordlist);
+            ladders.CreateLadders();
+        }      
     }
 }
