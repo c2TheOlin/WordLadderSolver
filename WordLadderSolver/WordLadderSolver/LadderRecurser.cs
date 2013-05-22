@@ -1,12 +1,8 @@
 ﻿namespace WordLadderSolver
 {
-    using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using WordLadderSolver;
-    using System.Threading.Tasks;
     using System.Text.RegularExpressions;
+    using System.Threading.Tasks;
 
     public class LadderRecurser
     {
@@ -24,6 +20,8 @@
         {
             _rootWord = rootWord;
             _wordDictionary = wordDictionary;
+            _shortestLadder = new List<string>();
+            _longestLadder = new List<string>();
         }
 
         public void CreateLadders()
@@ -34,20 +32,25 @@
         private void FindNextRung(string word, List<string> ladder, ref string[] wordDictionary)
         {
             List<string> rungWords = new List<string>();
+            int charIndex = 0;
             foreach (char c in word)
             {
-                var regexString = word.Replace(c, '.');
+                var regexString = word.Replace('.', charIndex);
                 Regex regex = new Regex(regexString);
 
                 // Use Parallel Foreach to build next rungs
                 Parallel.ForEach(wordDictionary, current => {
                     if (regex.IsMatch(current))
                     {
+                        if (current == _rootWord) return;
+                        if (rungWords.Contains(current)) return;
+                        
                         rungWords.Add(current);
                     }
-                }); 
+                });
+
+                charIndex++;
             }
         }
-
     }
 }

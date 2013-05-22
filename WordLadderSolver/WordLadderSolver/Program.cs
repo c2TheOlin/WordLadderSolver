@@ -10,11 +10,9 @@
 namespace WordLadderSolver
 {
     using System;
-    using System.Collections.Generic;
     using System.IO;
     using System.Reflection;
-    using System.Threading.Tasks;
-    using System.Linq;
+    using System.Text;
 
     /// <summary>
     /// The Puzzle Solver - Attempting to Solving Word Ladder Problems Since 2013
@@ -34,5 +32,15 @@ namespace WordLadderSolver
             LadderRecurser ladders = new LadderRecurser(rootWord, wordlist);
             ladders.CreateLadders();
         }      
+    }
+
+    public static class Extentions
+    {
+        public static string Replace(this String word, char newChar, int index)
+        {
+            StringBuilder sb = new StringBuilder(word);
+            sb[index] = newChar;
+            return sb.ToString();
+        }
     }
 }
