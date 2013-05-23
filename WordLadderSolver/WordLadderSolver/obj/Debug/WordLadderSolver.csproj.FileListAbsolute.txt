@@ -11,4 +11,3 @@ C:\Users\Colin\Documents\GitHub\WordLadderSolver\WordLadderSolver\WordLadderSolv
 C:\Users\Colin\Documents\GitHub\WordLadderSolver\WordLadderSolver\WordLadderSolver\bin\Debug\Data\dictionary.txt
 C:\Users\Colin\Documents\GitHub\WordLadderSolver\WordLadderSolver\WordLadderSolver\bin\Debug\WordLadderSolver.exe
 C:\Users\Colin\Documents\GitHub\WordLadderSolver\WordLadderSolver\WordLadderSolver\bin\Debug\WordLadderSolver.pdb
-C:\Users\Colin\Documents\GitHub\WordLadderSolver\WordLadderSolver\WordLadderSolver\obj\Debug\WordLadderSolver.csprojResolveAssemblyReference.cache
