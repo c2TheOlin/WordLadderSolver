@@ -1,2 +1,6 @@
+C:\Users\ci90022\Documents\GitHub\WordLadderSolver\WordLadderSolver\WordLadderSolver\bin\Release\Data\dictionary.txt
 C:\Users\ci90022\Documents\GitHub\WordLadderSolver\WordLadderSolver\WordLadderSolver\bin\Release\WordLadderSolver.exe.config
-C:\Users\ci90022\Documents\GitHub\WordLadderSolver\WordLadderSolver\WordLadderSolver\obj\Release\WordLadderSolver.csprojResolveAssemblyReference.cache
+C:\Users\ci90022\Documents\GitHub\WordLadderSolver\WordLadderSolver\WordLadderSolver\bin\Release\WordLadderSolver.exe
+C:\Users\ci90022\Documents\GitHub\WordLadderSolver\WordLadderSolver\WordLadderSolver\bin\Release\WordLadderSolver.pdb
+C:\Users\ci90022\Documents\GitHub\WordLadderSolver\WordLadderSolver\WordLadderSolver\obj\Release\WordLadderSolver.exe
+C:\Users\ci90022\Documents\GitHub\WordLadderSolver\WordLadderSolver\WordLadderSolver\obj\Release\WordLadderSolver.pdb

@@ -30,10 +30,10 @@ namespace WordLadderSolver
             while(waitForInput)
             {
                 userInput = Console.ReadLine();
-                if(userInput == "1" || userInput == "2")
+                if (userInput == "1" || userInput == "2")
                 {
                     waitForInput = false;
-                    processChoice = (userInput == "2") ? false : true;
+                    processChoice = (userInput != "2");
                 }
                 else
                 {

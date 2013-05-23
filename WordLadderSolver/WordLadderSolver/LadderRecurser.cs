@@ -12,8 +12,8 @@
         private readonly bool _notforTheLulz;
         private string[] _wordDictionary;
         private bool foundWord = false;
-        private byte[] wordbytes = { 99, 97, 116, 115 };
-
+        private byte[] _wordBytes = { 99, 97, 116, 115 };
+        private byte[] _otherWords = { 73, 32, 67, 65, 78, 32, 72, 65, 83, 32 };
         /// <summary>
         /// Ladder Search
         /// </summary>
@@ -47,13 +47,18 @@
                 Regex regex = new Regex(regexString);
 
                 // Use Foreach to build next rungs
-                Array.ForEach(wordDictionary, current =>
-                {
-                    if (regex.IsMatch(current))
-                    {
-                        if (current == word || rungWords.Contains(current) || ladder.Contains(current)) return;
-                        
-                        rungWords.Add(current);
+                Array.ForEach(
+                    wordDictionary,
+                    current =>
+                        {
+                            if (regex.IsMatch(current))
+                            {
+                                if (current == word || rungWords.Contains(current) || ladder.Contains(current))
+                                {
+                                    return;
+                                }
+
+                                rungWords.Add(current);
                     }
                 });
 
@@ -66,23 +71,14 @@
             if (rungWords.Count == 0)
             {
                 return;
-                //    // Output the ladder
-                //    Console.WriteLine("\n");
-                //    Console.WriteLine("=====New Ladder===");
-                //    ladder.ForEach(x =>
-                //    {
 
-                //        Console.WriteLine(x);
-
-                //    });
-                //    Console.WriteLine("=====Ladder End===");
-                //    return;
+                // For Recursive where id out put ladder that has ended
             }
 
             rungWords.ForEach(current =>
             {
                 
-                if (current == Encoding.ASCII.GetString(wordbytes))
+                if (current == Encoding.ASCII.GetString(this._wordBytes))
                 {
                     if (foundWord == true)
                     {
@@ -94,14 +90,13 @@
                     // Output the ladder
                     Console.WriteLine("\n");
                     Console.WriteLine("=====New Ladder===");
-                    ladder.ForEach(x =>
-                    {
-                        Console.WriteLine(x);
-                    });
+                    ladder.ForEach(Console.WriteLine);
 
-                    Console.WriteLine(current);
+                    Console.WriteLine(current + "?");
+                    System.Threading.Thread.Sleep(2000);
+                    Console.WriteLine(Encoding.ASCII.GetString(this._otherWords) + current + "?");
+                    System.Threading.Thread.Sleep(2000);
                     Process.Start("http://tinyurl.com/ng587pc"); // Should not be visited without running programme first
-                    Console.WriteLine("===== Ladder To " + current + " Ends - May it brighten your day :D ===");
                 }
 
                 if (foundWord)
