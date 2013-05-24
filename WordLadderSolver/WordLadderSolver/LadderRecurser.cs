@@ -45,34 +45,7 @@
 
         private void FindLadder(string word, List<string> ladder, ref string[] wordDictionary)
         {
-            List<string> rungWords = new List<string>();
-            int charIndex = 0;
-            foreach (char c in word)
-            {   
-                var regexString = word.Replace('.', charIndex);
-                Regex regex = new Regex(regexString);
-
-                // Use Foreach to build next rungs
-                Array.ForEach(
-                    wordDictionary,
-                    current =>
-                        {
-                            if (!regex.IsMatch(current))
-                            {
-                                return;
-                            }
-
-                            if (current == word || rungWords.Contains(current) || ladder.Contains(current))
-                            {
-                                return;
-                            }
-
-                            rungWords.Add(current);
-                        });
-
-                charIndex++;
-            }  
-
+            List<string> rungWords = this.RungWordsBuilder(word, ladder, ref wordDictionary);
             ladder.Add(word);
 
             // end of ladder dont print
@@ -104,6 +77,7 @@
                     Console.WriteLine(Encoding.ASCII.GetString(this._otherWords) + current + "?");
                     System.Threading.Thread.Sleep(2000);
                     Process.Start("http://tinyurl.com/ng587pc"); // Should not be visited without running programme first
+                    System.Threading.Thread.Sleep(2000);
                     #endregion
                 }
 
@@ -117,37 +91,9 @@
             });
         }
 
-        private void FindFirstRung(string word, IList<string> ladder, ref string[] wordDictionary)
+        private void FindFirstRung(string word, List<string> ladder, ref string[] wordDictionary)
         {
-            List<string> rungWords = new List<string>();
-            int charIndex = 0;
-            foreach (char c in word)
-            {
-                Regex regex = new Regex(word.Replace('.', charIndex));
-
-                // Use Foreach to build next rungs - could use linq here
-                // Opted against Parrallel for as probably not much faster on such a small set
-                // possibly slower? would need to prove
-                Array.ForEach(
-                    wordDictionary,
-                    current =>
-                        {
-                            if (!regex.IsMatch(current))
-                            {
-                                return;
-                            }
-
-                            if (current == word || rungWords.Contains(current) || ladder.Contains(current))
-                            {
-                                return;
-                            }
-
-                            rungWords.Add(current);
-                });
-
-                charIndex++;
-            }
-
+            List<string> rungWords = this.RungWordsBuilder(word, ladder, ref wordDictionary);
             ladder.Add(word);
 
             // Since we're only doing first rung - otherwise recursive
@@ -161,6 +107,41 @@
                 Console.WriteLine("===================");
                 ladderIndex++;
             });
+        }
+
+        private List<string> RungWordsBuilder(string word, List<string> currentLadder, ref string[] wordDictionary)
+        {
+            List<string> words = new List<string>();
+            
+            int charIndex = 0;
+            foreach (char c in word)
+            {
+                Regex regex = new Regex(word.Replace('.', charIndex));
+
+                // Use Foreach to build next rungs - could use linq here
+                // Opted against Parrallel for as probably not much faster on such a small set
+                // possibly slower? would need to prove
+                Array.ForEach(
+                    wordDictionary,
+                    current =>
+                    {
+                        if (!regex.IsMatch(current))
+                        {
+                            return;
+                        }
+
+                        if (current == word || words.Contains(current) || currentLadder.Contains(current))
+                        {
+                            return;
+                        }
+
+                        words.Add(current);
+                    });
+
+                charIndex++;
+            }
+
+            return words;
         }
     }
 }
